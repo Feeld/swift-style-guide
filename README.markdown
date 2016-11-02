@@ -213,6 +213,65 @@ let colour = "red"
 
 Use extensions to organize your code into logical blocks of functionality. Each extension should be set off with a `// MARK: -` comment to keep things well-organized.
 
+### Access Modifiers
+
+Always add access modifiers to top-level definitions. Do not otherwise specify them unless it is necessary:
+
+**Preferred:**
+```swift
+internal final class Object {
+    var myInt: Int
+
+    private func doWork() {
+        ...
+    }
+}
+```
+
+**Not Preferred:**
+```swift
+class Object {
+    var myInt: Int
+
+    private func doWork() {
+        ...
+    }
+}
+```
+
+Further, the access modifier should always be presented first in the list before any other modifiers:
+
+**Preferred:**
+```swift
+public override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    return ...
+}
+```
+
+**Not Preferred:**
+```swift
+override public class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    return ...
+}
+```
+
+### Attributes
+
+Attributes should precede access modifiers (explicit or implicit) and appear on the same line as them. 
+
+**Preferred:**
+```swift
+@NSManaged var name: String!
+```
+
+**Not Preferred:**
+```swift
+@NSManaged 
+var name: String!
+```
+
+
+
 ### Protocol Conformance
 
  In particular, when adding protocol conformance to a model, prefer adding a separate extension for the protocol methods. This keeps the related methods grouped together with the protocol and can simplify instructions to add a protocol to a class with its associated methods.
@@ -771,24 +830,6 @@ resource.request().onComplete { [unowned self] response in
 resource.request().onComplete { [weak self] response in
   let model = self?.updateModel(response)
   self?.updateUI(model)
-}
-```
-
-## Access Control
-
-Full access control annotation in tutorials can distract from the main topic and is not required. Using `private` appropriately, however, adds clarity and promotes encapsulation. Use `private` as the leading property specifier. The only things that should come before access control are the `static` specifier or attributes such as `@IBAction` and `@IBOutlet`.
-
-**Preferred:**
-```swift
-class TimeMachine {  
-  private dynamic lazy var fluxCapacitor = FluxCapacitor()
-}
-```
-
-**Not Preferred:**
-```swift
-class TimeMachine {  
-  lazy dynamic private var fluxCapacitor = FluxCapacitor()
 }
 ```
 
