@@ -17,6 +17,7 @@ Writing Objective-C? Check out our [Objective-C Style Guide](https://github.com/
   * [Generics](#generics)
   * [Class Prefixes](#class-prefixes)
   * [Language](#language)
+  * [Getters](#getters)
 * [Code Organization](#code-organization)
   * [Protocol Conformance](#protocol-conformance)
   * [Unused Code](#unused-code)
@@ -207,6 +208,26 @@ let color = "red"
 **Not Preferred:**
 ```swift
 let colour = "red"
+```
+
+### Getters
+
+Use the `is` prefix only with computed properties that have a getter and no setter. Do not use the `is` prefix for functions.
+
+**Preferred:**
+```swift
+var isOn: Bool {
+    get {
+        return value
+    }
+}
+```
+
+**Not Preferred:**
+```swift
+var isOn: Bool { get set }
+
+func isOn() -> Bool { ... }
 ```
 
 ## Code Organization
