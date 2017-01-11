@@ -409,6 +409,20 @@ class TestDatabase : Database {
 }
 ```
 
+* Use whitespace to improve readability, especially when there are multiple parentheses and/or braces are involved. 
+
+**Preferred**
+
+```swift
+DispatchQueue.main.async(execute: { failure() })
+```
+
+**Not Preferred**
+
+```swift
+DispatchQueue.main.async(execute:{failure()})
+```
+
 ## Comments
 
 When they are needed, use comments to explain **why** a particular piece of code does something. Comments must be kept up-to-date or deleted.
